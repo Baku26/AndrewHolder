@@ -1,9 +1,10 @@
 import java.util.ArrayList;
-import javafx.scene.control.Tab;
+import java.util.LinkedList;
 
 public class AndrewHolder {
     
     ArrayList<Integer> someList = new ArrayList<>();
+    LinkedList<Integer> someList = new LinkedList<>();
     private String[] bucket;
     private int size;
     
@@ -104,9 +105,6 @@ public String[] getBucket() {
         arrayValues[i] = bucket[i];
     }
     return arrayValues;
-  }
- // public void setObject(Tab objInput) {
-    
   }
 
 
