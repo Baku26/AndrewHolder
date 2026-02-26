@@ -2,10 +2,51 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class AndrewHolder {
+
+    private Bucket head;
     
     ArrayList<Integer> someList = new ArrayList<>();
     LinkedList<Integer> someList = new LinkedList<>();
-    private String[] bucket;
+  
+    public AndrewHolder() {
+       head = null;
+    }
+
+        public void add(String name) {
+           Bucket newBucket = new Bucket(name);
+          if ( head == null) {
+              head = newBucket;
+              else {
+            Bucket current = head;
+            while (current.getNextBucket() != null) {
+                current = current.getNextBucket();
+            }
+    
+            current.setNextBucket(newBucket); 
+        }
+    }
+    public void printBucket() {
+        if (head == null) {
+            System.out.println("The bucket is empty for now.");
+            return; 
+        }
+        
+        Bucket current = head;
+        
+        
+          
+        System.out.println("the bucket amount is :");
+        while (current !=null) {
+            System.out.println("[" + current.getBucketSize()+"]->");
+            current = current.getNextBucket();
+            
+            
+        }
+        System.out.println("the end");
+    }
+}
+
+ private String bucket[];
     private int size;
     
     public AndrewHolder() {
@@ -14,12 +55,31 @@ public class AndrewHolder {
     }
 
         public void addToBucket(String someUserInputString) {
-          if ( size == bucket.length) {
-          bucket[size] = someUserInputString;
-          doubleBucketSize();
-          size++;
+        ensureCapacity();
+        bucket[size] = someUserInputString;
+        size++;
+       }
+       
+    public void add(String someUserInputString, int position) {
+        if (position < 0 || position > size) {
+            return;
         }
-    }
+        ensureCapacity();
+        for(int i = size; i > position; i--) {
+            bucket[i] = bucket[i-1];
+            
+           }
+           bucket[position] = someUserInputString;
+           size++;
+        }
+        public void remove(int position) {
+            if (position < 0 || position >= size) {
+                return;
+            }
+            for(int i = position; i < size - 1; i++) {
+                bucket[i] = bucket[i+1];
+            }
+
         public int size() {
             return size;
         }
